@@ -3,6 +3,25 @@
 import Image from 'next/image'
 import { useState } from 'react'
 
+const fruits = [
+  {
+    name: 'Cherry',
+    src: "/images/cherry.png",
+  },
+  {
+    name: 'Orange',
+    src: "/images/orange.png",
+  },
+  {
+    name: 'Strawberry',
+    src: "/images/strawberry.png",
+  },
+  {
+    name: 'Broccoli',
+    src: "/images/broccoli.png",
+  },
+];
+
 export default function Home() {
   const [nameInput, setNameInput] = useState<string>('Thuan Dao');
   const [phoneInput, setPhoneInput] = useState<string>('090087656');
@@ -18,7 +37,8 @@ export default function Home() {
             <div className="font-sacramento italic text-2xl">Energy and refresh drink</div>
           </div>
         </div>
-        {/* --------------- Content ------------------- */}
+
+        {/* --------------- Login ------------------- */}
         <div className="p-4 space-y-4">
           <div>Tham gia khảo sát để nhận ngay 01 Lon Pango Enery bạn nhé</div>
           <div className="space-y-5">
@@ -61,30 +81,16 @@ export default function Home() {
             <div className="space-y-2.5">
               <div>Bạn thích hương vị nào nhất? *</div>
               <div className="grid grid-cols-4 cursor-pointer">
-                <div className="rounded-lg hover:bg-fuchsia-500 hover:text-white flex items-center justify-center flex-col gap-3 h-40">
-                  <div className="w-12 h-12 relative">
-                    <Image src="/images/cherry.png" alt="cherry" fill className="object-contain"/>
-                  </div>  
-                  <div>Cherry</div>
-                </div>
-                <div className="rounded-lg hover:bg-fuchsia-500 hover:text-white flex items-center justify-center flex-col gap-3 h-40">
-                  <div className="w-12 h-12 relative">
-                    <Image src="/images/orange.png" alt="orange" fill className="object-contain"/>
-                  </div>
-                  <div className="w-full text-center">Orange</div>
-                </div>
-                <div className="rounded-lg hover:bg-fuchsia-500 hover:text-white flex items-center justify-center flex-col gap-3 h-40">
-                  <div className="w-12 h-12 relative">
-                    <Image src="/images/strawberry.png" alt="strawberry" fill className="object-contain"/>
-                  </div>
-                  <div>Strawberry</div>
-                </div>
-                <div className="rounded-lg hover:bg-fuchsia-500 hover:text-white flex items-center justify-center flex-col gap-3 h-40">
-                  <div className="w-12 h-12 relative">
-                    <Image src="/images/broccoli.png" alt="Broccoli" fill className="object-contain"/>
-                  </div>
-                  <div>Broccoli</div>
-                </div>
+                {fruits.map(({ name, src }) => (
+                  <>
+                    <div className="rounded-lg hover:bg-fuchsia-500 hover:text-white flex items-center justify-center flex-col gap-3 h-40 transition-colors duration-300">
+                      <div className="w-12 h-12 relative">
+                        <Image src={src} alt={name} fill className="object-contain"/>
+                      </div>  
+                      <div>{name}</div>
+                    </div>
+                  </>
+                ))}
               </div>
             </div>
           </div>
